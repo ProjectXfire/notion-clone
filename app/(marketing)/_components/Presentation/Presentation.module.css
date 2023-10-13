@@ -1,0 +1,16 @@
+.presentation {
+  padding-top: 1rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .presentation {
+    justify-content: flex-start;
+  }
+}

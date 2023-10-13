@@ -6,8 +6,18 @@ import { Providers } from '@/shared/components';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Notion',
-  description: 'Notion clone'
+  title: 'Jotion',
+  description: 'Best workspace',
+  icons: {
+    icon: [
+      { media: '(prefers-color-scheme: light)', url: '/images/logo.svg', href: '/images/logo.svg' },
+      {
+        media: '(prefers-color-scheme: dark)',
+        url: '/images/logo-dark.svg',
+        href: '/images/logo-dark.svg'
+      }
+    ]
+  }
 };
 
 interface Props {

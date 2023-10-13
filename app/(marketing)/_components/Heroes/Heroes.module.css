@@ -1,0 +1,47 @@
+.heroes-container {
+  max-width: 64rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroes {
+  display: flex;
+  align-items: center;
+}
+
+.heroes__image {
+  position: relative;
+}
+
+.heroes__image--left {
+  width: 300px;
+  height: 300px;
+}
+
+@media screen and (min-width: 640px) {
+  .heroes__image--left {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .heroes__image--left {
+    width: 380px;
+    height: 380px;
+  }
+}
+
+.heroes__image--right {
+  display: none;
+  width: 380px;
+  height: 380px;
+}
+
+@media screen and (min-width: 768px) {
+  .heroes__image--right {
+    display: block;
+  }
+}
