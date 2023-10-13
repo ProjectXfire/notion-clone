@@ -1,0 +1,50 @@
+.heading {
+  max-width: 48rem;
+  margin: 1rem 0;
+}
+
+.heading__title {
+  margin-bottom: 1rem;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+}
+
+.heading__title span {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 640px) {
+  .heading__title {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .heading__title {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+.heading__subtitle {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 640px) {
+  .heading__subtitle {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .heading__subtitle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
