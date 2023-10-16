@@ -2,6 +2,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Run convex server:
+
+```bash
+npx convex dev
+```
+
 First, run the development server:
 
 ```bash
