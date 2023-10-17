@@ -4,6 +4,7 @@ import { ChevronsLeft, MenuIcon } from 'lucide-react';
 import styles from './Navigation.module.css';
 import { useNavigation } from './useNavigation';
 import { useEffect, useState } from 'react';
+import { UserItem } from '..';
 
 function Navigation(): JSX.Element {
   const {
@@ -43,7 +44,7 @@ function Navigation(): JSX.Element {
           <ChevronsLeft className='w-6 h-6' />
         </div>
         <div>
-          <p>Action items</p>
+          <UserItem />
         </div>
         <div className='mt-4'>
           <p>Documents</p>
@@ -64,7 +65,6 @@ function Navigation(): JSX.Element {
           {isCollapsed && (
             <MenuIcon className={`${styles['navbar__content-open']}`} onClick={resetWidth} />
           )}
-          contenido
         </nav>
       </div>
     </>
