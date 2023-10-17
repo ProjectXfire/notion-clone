@@ -1,8 +1,7 @@
 import { redirect } from 'next/navigation';
 import NextImage from 'next/image';
 import { currentUser } from '@clerk/nextjs';
-import { PlusCircle } from 'lucide-react';
-import { Button } from '@/shared/components';
+import { CreateButton } from '../../_components';
 
 async function DocumentsPage(): Promise<JSX.Element> {
   const user = await currentUser();
@@ -26,9 +25,7 @@ async function DocumentsPage(): Promise<JSX.Element> {
         alt='empty'
       />
       <h2>Welcome to {user.firstName}&apos;s Jotion</h2>
-      <Button>
-        <PlusCircle className='h-4 w-4 mr-2' /> Create a note
-      </Button>
+      <CreateButton />
     </div>
   );
 }

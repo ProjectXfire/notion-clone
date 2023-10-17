@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { SignOutButton, useUser } from '@clerk/clerk-react';
 import { ChevronsLeftRight } from 'lucide-react';
 import {
   Avatar,
@@ -12,11 +13,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/shared/components';
-import { SignOutButton, useUser } from '@clerk/clerk-react';
 
 function UserItem(): JSX.Element {
-  const { user } = useUser();
   const router = useRouter();
+  const { user } = useUser();
 
   return (
     <DropdownMenu>
