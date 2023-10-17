@@ -59,7 +59,7 @@ export function useNavigation(): INavigationReturn {
       sidebarRef.current.style.width = isMobile ? '100%' : '240px';
       navbarRef.current.style.setProperty('width', isMobile ? '0' : 'calc(100% - 240px)');
       navbarRef.current.style.setProperty('left', isMobile ? '100%' : '240px');
-      navbarRef.current.style.padding = isMobile && isCollapsed ? '0' : '0.5rem 0.5rem';
+      navbarRef.current.style.padding = isMobile && isCollapsed ? '0' : '1rem 0.5rem';
       setTimeout(() => {
         setIsResetting(false);
       }, 300);
@@ -73,7 +73,7 @@ export function useNavigation(): INavigationReturn {
       sidebarRef.current.style.width = '0px';
       navbarRef.current.style.width = '100%';
       navbarRef.current.style.left = '0';
-      navbarRef.current.style.padding = '0.5rem 0.5rem';
+      navbarRef.current.style.padding = '1rem 0.5rem';
       setTimeout(() => {
         setIsResetting(false);
       }, 300);

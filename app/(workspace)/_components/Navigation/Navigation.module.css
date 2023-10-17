@@ -5,7 +5,7 @@
   flex-direction: column;
   position: relative;
   background-color: hsl(var(--secondary));
-  z-index: 51;
+  z-index: 40;
   box-sizing: border-box;
   overflow-y: auto;
 }
@@ -22,8 +22,8 @@
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.7rem;
+  right: 0.6rem;
   border-radius: 0.5rem;
   opacity: 0;
   transition: opacity 300ms;
@@ -55,11 +55,11 @@
 
 .navbar {
   width: calc(100% - 240px);
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem;
   position: absolute;
   top: 0;
   left: 240px;
-  z-index: 51;
+  z-index: 40;
   background-color: rgb(227, 227, 227);
   overflow: hidden;
 }
