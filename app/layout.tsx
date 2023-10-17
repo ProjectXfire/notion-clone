@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { Toaster } from 'sonner';
 import { Providers } from '@/shared/components';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: Props): JSX.Element {
     <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
         <Providers attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+          <Toaster position='bottom-center' />
           {children}
         </Providers>
       </body>

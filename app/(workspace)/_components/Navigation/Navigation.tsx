@@ -1,9 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { ChevronsLeft, MenuIcon } from 'lucide-react';
+import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 import styles from './Navigation.module.css';
 import { useNavigation } from './useNavigation';
-import { useEffect, useState } from 'react';
 import { UserItem } from '..';
 
 function Navigation(): JSX.Element {
@@ -19,6 +21,7 @@ function Navigation(): JSX.Element {
   } = useNavigation();
 
   const [isMounted, setIsMounted] = useState(false);
+  const documents = useQuery(api.documents.get);
 
   useEffect(() => {
     setIsMounted(true);
@@ -47,7 +50,9 @@ function Navigation(): JSX.Element {
           <UserItem />
         </div>
         <div className='mt-4'>
-          <p>Documents</p>
+          {documents?.map((doc) => (
+            <p key={doc._id}>{doc.title}</p>
+          ))}
         </div>
         <div
           className={styles.navigation__resize}
