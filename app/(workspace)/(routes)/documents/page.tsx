@@ -19,7 +19,7 @@ async function DocumentsPage(): Promise<JSX.Element> {
       />
       <NextImage
         className='hidden dark:block'
-        src='/images/empty.png'
+        src='/images/empty-dark.png'
         height={300}
         width={300}
         alt='empty'
