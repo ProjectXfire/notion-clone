@@ -1,14 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ChevronsLeft, MenuIcon } from 'lucide-react';
-import { useQuery } from 'convex/react';
+import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import styles from './Navigation.module.css';
 import { useNavigation } from './useNavigation';
-import { UserItem } from '..';
+import styles from './Navigation.module.css';
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react';
+import { Item, UserItem } from '..';
+import { toast } from 'sonner';
 
 function Navigation(): JSX.Element {
+  const documents = useQuery(api.documents.get);
+  const create = useMutation(api.documents.create);
+
+  const [isMounted, setIsMounted] = useState(false);
+
   const {
     isMobile,
     isResetting,
@@ -20,8 +26,14 @@ function Navigation(): JSX.Element {
     collapse
   } = useNavigation();
 
-  const [isMounted, setIsMounted] = useState(false);
-  const documents = useQuery(api.documents.get);
+  const onCreate = (): void => {
+    const promise = create({ title: 'Untitled' });
+    toast.promise(promise, {
+      loading: 'Creatin new note',
+      success: 'New note created!',
+      error: 'Failed to create a new note'
+    });
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -48,6 +60,9 @@ function Navigation(): JSX.Element {
         </div>
         <div>
           <UserItem />
+          <Item label='Search' icon={Search} isSearch onClick={() => {}} />
+          <Item label='Settings' icon={Settings} onClick={() => {}} />
+          <Item label='New page' icon={PlusCircle} onClick={onCreate} />
         </div>
         <div className='mt-4'>
           {documents?.map((doc) => (

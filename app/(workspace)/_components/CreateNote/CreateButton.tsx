@@ -10,7 +10,7 @@ function CreateButton(): JSX.Element {
   const create = useMutation(api.documents.create);
 
   const onCreate = (): void => {
-    const promise = create({ title: 'Untitle' });
+    const promise = create({ title: 'Untitled' });
     toast.promise(promise, {
       loading: 'Creatin new note',
       success: 'New note created!',
