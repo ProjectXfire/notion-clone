@@ -1,5 +1,6 @@
 import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
+import { type Id } from './_generated/dataModel';
 // import { Doc, Id } from './_generated/dataModel';
 
 export const getSidebar = query({
@@ -34,5 +35,29 @@ export const create = mutation({
       isPublished: false
     });
     return document;
+  }
+});
+
+export const archive = mutation({
+  args: { id: v.id('documents') },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error('Not autneticated');
+    const userId = identity.subject;
+    const existingDocument = await ctx.db.get(args.id);
+    if (existingDocument === null) throw new Error('Not found');
+    if (existingDocument.userId !== userId) throw new Error('Unauthorized');
+    const recursiveArchive = async (documentId: Id<'documents'>): Promise<void> => {
+      const children = await ctx.db
+        .query('documents')
+        .withIndex('by_user_parent', (q) => q.eq('userId', userId).eq('parentDocument', documentId))
+        .collect();
+      for (const child of children) {
+        await ctx.db.patch(child._id, { isArchive: true });
+        await recursiveArchive(child._id);
+      }
+    };
+    await ctx.db.patch(args.id, { isArchive: true });
+    await recursiveArchive(args.id);
   }
 });

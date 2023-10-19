@@ -2,12 +2,27 @@
 
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'convex/react';
+import { useUser } from '@clerk/clerk-react';
 import { type Id } from '@/convex/_generated/dataModel';
 import { api } from '@/convex/_generated/api';
 import styles from './Item.module.css';
-import { ChevronDown, ChevronRight, Plus, type LucideIcon } from 'lucide-react';
-import { Skeleton } from '@/shared/components';
 import { toast } from 'sonner';
+import {
+  ChevronDown,
+  ChevronRight,
+  Plus,
+  type LucideIcon,
+  MoreHorizontal,
+  Trash
+} from 'lucide-react';
+import {
+  Skeleton,
+  DropdownMenuSeparator,
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem
+} from '@/shared/components';
 
 interface Props {
   id?: Id<'documents'>;
@@ -36,7 +51,9 @@ function Item({
 }: Props): JSX.Element {
   const router = useRouter();
 
+  const { user } = useUser();
   const create = useMutation(api.documents.create);
+  const archive = useMutation(api.documents.archive);
 
   const ChevronIcon = expanded !== undefined && expanded ? ChevronDown : ChevronRight;
 
@@ -58,6 +75,17 @@ function Item({
     } catch (error) {
       toast.error('Failed to create a new note.');
     }
+  };
+
+  const onArchive = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+    e.stopPropagation();
+    if (id === undefined) return;
+    const promise = archive({ id });
+    toast.promise(promise, {
+      loading: 'Deleting note...',
+      error: 'Failed to delete note',
+      success: 'Note deleted'
+    });
   };
 
   return (
@@ -89,6 +117,28 @@ function Item({
       )}
       {Boolean(id) && (
         <div className='ml-auto flex items-center gap-x-2'>
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              asChild
+            >
+              <div role='button' className={`dark:hover:bg-neutral-600 ${styles.item__options}`}>
+                <MoreHorizontal className='h-4 w-4 text-muted-foreground' />
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='w-60' align='start' side='right' forceMount>
+              <DropdownMenuItem onClick={onArchive}>
+                <Trash className='h-4 w-4 mr-2' />
+                Delete
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <div className='text-xs text-muted-foreground p-2'>
+                Last edited by: {user?.fullName}
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <div
             role='button'
             className={`dark:hover:bg-neutral-600 ${styles.item__add} `}
