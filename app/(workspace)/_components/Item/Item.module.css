@@ -18,6 +18,21 @@
   border-radius: calc(var(--radius) - 4px);
 }
 
+.item__expand:hover {
+  background-color: hsl(var(--primary) / 0.05);
+}
+
+.item__add {
+  width: 100%;
+  margin-left: auto;
+  opacity: 0;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.item__add:hover {
+  background-color: hsl(var(--primary) / 0.05);
+}
+
 .item__kbd {
   height: 1.25rem;
   margin-left: auto;
@@ -35,6 +50,10 @@
   opacity: 1;
   user-select: none;
   pointer-events: none;
+}
+
+.item:hover .item__add {
+  opacity: 1;
 }
 
 .item:hover {

@@ -2,9 +2,17 @@ import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 // import { Doc, Id } from './_generated/dataModel';
 
-export const get = query({
-  handler: async (ctx) => {
-    const documents = await ctx.db.query('documents').collect();
+export const getSidebar = query({
+  args: { userId: v.string(), parentDocument: v.optional(v.id('documents')) },
+  handler: async (ctx, args) => {
+    const documents = await ctx.db
+      .query('documents')
+      .withIndex('by_user_parent', (q) =>
+        q.eq('userId', args.userId).eq('parentDocument', args.parentDocument)
+      )
+      .filter((q) => q.eq(q.field('isArchive'), false))
+      .order('desc')
+      .collect();
     return documents;
   }
 });
