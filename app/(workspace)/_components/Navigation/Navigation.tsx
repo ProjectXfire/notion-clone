@@ -1,16 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from 'convex/react';
+import { useMutation } from 'convex/react';
+import { toast } from 'sonner';
 import { api } from '@/convex/_generated/api';
 import { useNavigation } from './useNavigation';
 import styles from './Navigation.module.css';
 import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react';
-import { Item, UserItem } from '..';
-import { toast } from 'sonner';
+import { DocumentsList, Item, UserItem } from '..';
 
 function Navigation(): JSX.Element {
-  const documents = useQuery(api.documents.get);
   const create = useMutation(api.documents.create);
 
   const [isMounted, setIsMounted] = useState(false);
@@ -65,9 +64,7 @@ function Navigation(): JSX.Element {
           <Item label='New page' icon={PlusCircle} onClick={onCreate} />
         </div>
         <div className='mt-4'>
-          {documents?.map((doc) => (
-            <p key={doc._id}>{doc.title}</p>
-          ))}
+          <DocumentsList />
         </div>
         <div
           className={styles.navigation__resize}

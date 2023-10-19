@@ -16,7 +16,7 @@ function Heading(): JSX.Element {
         Your ideas, documents, & plans. Unified. Welcome to <span>Jotion</span>
       </h1>
       <h3 className={styles.heading__subtitle}>
-        Jotion is the connectd workspace where <br /> better, faster work happens.
+        Jotion is the connected workspace where <br /> better, faster work happens.
       </h3>
       {isLoading && (
         <div className='w-full flex items-center justify-center'>
