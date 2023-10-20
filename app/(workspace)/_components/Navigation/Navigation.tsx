@@ -9,9 +9,11 @@ import styles from './Navigation.module.css';
 import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings, Trash } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/shared/components';
 import { DocumentsList, Item, TrashBox, UserItem } from '..';
+import { useSearch } from '../../states';
 
 function Navigation(): JSX.Element {
   const create = useMutation(api.documents.create);
+  const onOpen = useSearch((s) => s.onOpen);
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -34,11 +36,6 @@ function Navigation(): JSX.Element {
       error: 'Failed to create a new note'
     });
   };
-
-  /* const onRestore = (): void => {
-    if(user === undefined || user === null) return;
-    restore({id: ""})
-  } */
 
   useEffect(() => {
     setIsMounted(true);
@@ -65,7 +62,14 @@ function Navigation(): JSX.Element {
         </div>
         <div>
           <UserItem />
-          <Item label='Search' icon={Search} isSearch onClick={() => {}} />
+          <Item
+            label='Search'
+            icon={Search}
+            isSearch
+            onClick={() => {
+              onOpen();
+            }}
+          />
           <Item label='Settings' icon={Settings} onClick={() => {}} />
           <Item label='New page' icon={PlusCircle} onClick={onCreate} />
         </div>
