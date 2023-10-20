@@ -30,6 +30,21 @@ export const getTrash = query({
   }
 });
 
+export const getSearch = query({
+  args: { userId: v.string() },
+  handler: async (ctx, args) => {
+    const { userId } = args;
+    if (userId.length === 0) throw new Error('Not autneticated');
+    const documents = await ctx.db
+      .query('documents')
+      .withIndex('by_user', (q) => q.eq('userId', userId))
+      .filter((q) => q.eq(q.field('isArchive'), false))
+      .order('desc')
+      .collect();
+    return documents;
+  }
+});
+
 export const create = mutation({
   args: {
     title: v.string(),

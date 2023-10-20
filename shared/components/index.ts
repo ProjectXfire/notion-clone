@@ -9,3 +9,5 @@ export * from './ui/DropdownMenu';
 export * from './ui/Input';
 export * from './ui/Popover';
 export * from './ui/Skeleton';
+export * from './ui/Dialog';
+export * from './ui/Command';
