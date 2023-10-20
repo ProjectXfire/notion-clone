@@ -34,7 +34,7 @@ interface Props {
   onExpand?: () => void;
   label: string;
   icon: LucideIcon;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function Item({

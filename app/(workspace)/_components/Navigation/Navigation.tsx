@@ -6,8 +6,9 @@ import { toast } from 'sonner';
 import { api } from '@/convex/_generated/api';
 import { useNavigation } from './useNavigation';
 import styles from './Navigation.module.css';
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react';
-import { DocumentsList, Item, UserItem } from '..';
+import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings, Trash } from 'lucide-react';
+import { Popover, PopoverTrigger, PopoverContent } from '@/shared/components';
+import { DocumentsList, Item, TrashBox, UserItem } from '..';
 
 function Navigation(): JSX.Element {
   const create = useMutation(api.documents.create);
@@ -33,6 +34,11 @@ function Navigation(): JSX.Element {
       error: 'Failed to create a new note'
     });
   };
+
+  /* const onRestore = (): void => {
+    if(user === undefined || user === null) return;
+    restore({id: ""})
+  } */
 
   useEffect(() => {
     setIsMounted(true);
@@ -65,6 +71,14 @@ function Navigation(): JSX.Element {
         </div>
         <div className='mt-4'>
           <DocumentsList />
+          <Popover>
+            <PopoverTrigger className='w-full mt-4'>
+              <Item label='Trash' icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent className='p-0 w-72' side={isMobile ? 'bottom' : 'right'}>
+              <TrashBox />
+            </PopoverContent>
+          </Popover>
         </div>
         <div
           className={styles.navigation__resize}
