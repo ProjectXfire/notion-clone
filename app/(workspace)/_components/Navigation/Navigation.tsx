@@ -5,15 +5,16 @@ import { useMutation } from 'convex/react';
 import { toast } from 'sonner';
 import { api } from '@/convex/_generated/api';
 import { useNavigation } from './useNavigation';
+import { useSearch, useSettings } from '../../states';
 import styles from './Navigation.module.css';
 import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings, Trash } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/shared/components';
 import { DocumentsList, Item, TrashBox, UserItem } from '..';
-import { useSearch } from '../../states';
 
 function Navigation(): JSX.Element {
   const create = useMutation(api.documents.create);
   const onOpen = useSearch((s) => s.onOpen);
+  const onOpenSettings = useSettings((s) => s.onOpen);
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -62,15 +63,8 @@ function Navigation(): JSX.Element {
         </div>
         <div>
           <UserItem />
-          <Item
-            label='Search'
-            icon={Search}
-            isSearch
-            onClick={() => {
-              onOpen();
-            }}
-          />
-          <Item label='Settings' icon={Settings} onClick={() => {}} />
+          <Item label='Search' icon={Search} isSearch onClick={onOpen} />
+          <Item label='Settings' icon={Settings} onClick={onOpenSettings} />
           <Item label='New page' icon={PlusCircle} onClick={onCreate} />
         </div>
         <div className='mt-4'>

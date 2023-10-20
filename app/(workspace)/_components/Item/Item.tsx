@@ -98,7 +98,7 @@ function Item({
       {Boolean(id) && (
         <div
           role='button'
-          className={`dark:bg-neutral-600 mr-1 ${styles.item__expand}`}
+          className={`dark:hover:bg-neutral-600  ${styles.item__expand}`}
           onClick={handleExpand}
         >
           <ChevronIcon className='h-4 w-4 shrink-0 text-muted-foreground/50' />

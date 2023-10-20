@@ -11,3 +11,4 @@ export * from './ui/Popover';
 export * from './ui/Skeleton';
 export * from './ui/Dialog';
 export * from './ui/Command';
+export * from './ui/Label';

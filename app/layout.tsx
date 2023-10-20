@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { Providers } from '@/shared/components';
+import { ModalProviders } from './(workspace)/_components';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: Props): JSX.Element {
       <body className={inter.className}>
         <Providers attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
           <Toaster position='bottom-center' />
+          <ModalProviders />
           {children}
         </Providers>
       </body>

@@ -91,7 +91,7 @@ function TrashBox(): JSX.Element {
             <span className='truncate pl-2'>{doc.title}</span>
             <div className='flex items-center'>
               <div
-                className='rounded-sm p-2 hover:bg-neutral-200'
+                className='rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600'
                 role='button'
                 onClick={(e) => {
                   onRestore(e, doc._id);
@@ -104,7 +104,10 @@ function TrashBox(): JSX.Element {
                   onRemove(doc._id);
                 }}
               >
-                <div className='rounded-sm p-2 hover:bg-neutral-200' role='button'>
+                <div
+                  className='rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600'
+                  role='button'
+                >
                   <Trash className='h-4 w-4 text-muted-foreground' />
                 </div>
               </ConfirmModal>
