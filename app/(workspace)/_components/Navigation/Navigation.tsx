@@ -9,7 +9,7 @@ import { useSearch, useSettings } from '../../states';
 import styles from './Navigation.module.css';
 import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings, Trash } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/shared/components';
-import { DocumentsList, Item, TrashBox, UserItem } from '..';
+import { DocumentsList, Item, Navbar, TrashBox, UserItem } from '..';
 
 function Navigation(): JSX.Element {
   const create = useMutation(api.documents.create);
@@ -19,6 +19,7 @@ function Navigation(): JSX.Element {
   const [isMounted, setIsMounted] = useState(false);
 
   const {
+    params,
     isMobile,
     isResetting,
     isCollapsed,
@@ -90,11 +91,23 @@ function Navigation(): JSX.Element {
         }`}
         ref={navbarRef}
       >
-        <nav className={styles.navbar__content}>
-          {isCollapsed && (
-            <MenuIcon className={`${styles['navbar__content-open']}`} onClick={resetWidth} />
-          )}
-        </nav>
+        {params.id !== undefined ? (
+          <Navbar
+            isCollapsed={isCollapsed}
+            onResetWidth={resetWidth}
+            menuButton={
+              isCollapsed && (
+                <MenuIcon className={`${styles['navbar__content-open']}`} onClick={resetWidth} />
+              )
+            }
+          />
+        ) : (
+          <nav className={styles.navbar__content}>
+            {isCollapsed && (
+              <MenuIcon className={`${styles['navbar__content-open']}`} onClick={resetWidth} />
+            )}
+          </nav>
+        )}
       </div>
     </>
   );

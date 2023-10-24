@@ -25,7 +25,7 @@ function SearchCommand(): JSX.Element {
 
   const [isMounted, setIsMounted] = useState(false);
 
-  const documents = useQuery(api.documents.getSearch, { userId: user?.id ?? '' });
+  const res = useQuery(api.documents.getSearch, { userId: user?.id ?? '' });
 
   const onSelect = (id: string): void => {
     router.push(`/documents/${id}`);
@@ -57,7 +57,7 @@ function SearchCommand(): JSX.Element {
       <CommandList>
         <CommandEmpty>No results found</CommandEmpty>
         <CommandGroup heading='Documents'>
-          {documents?.map((doc) => (
+          {res?.data.map((doc) => (
             <CommandItem
               key={doc._id}
               value={`${doc._id}-${doc.title}`}

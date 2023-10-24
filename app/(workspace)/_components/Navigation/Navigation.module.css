@@ -55,12 +55,11 @@
 
 .navbar {
   width: calc(100% - 240px);
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
   position: absolute;
   top: 0;
   left: 240px;
   z-index: 40;
-  background-color: rgb(227, 227, 227);
   overflow: hidden;
 }
 

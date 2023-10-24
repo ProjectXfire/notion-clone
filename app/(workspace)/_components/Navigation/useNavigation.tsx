@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
+import { type Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { useMediaQuery } from 'usehooks-ts';
 
 interface INavigationReturn {
   isResizingRef: React.MutableRefObject<boolean>;
   sidebarRef: React.RefObject<HTMLElement>;
   navbarRef: React.RefObject<HTMLDivElement>;
+  params: Params;
   pathname: string;
   isResetting: boolean;
   isCollapsed: boolean;
@@ -18,6 +20,7 @@ interface INavigationReturn {
 export function useNavigation(): INavigationReturn {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const pathname = usePathname();
+  const params = useParams();
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<React.ElementRef<'aside'>>(null);
@@ -59,7 +62,7 @@ export function useNavigation(): INavigationReturn {
       sidebarRef.current.style.width = isMobile ? '100%' : '240px';
       navbarRef.current.style.setProperty('width', isMobile ? '0' : 'calc(100% - 240px)');
       navbarRef.current.style.setProperty('left', isMobile ? '100%' : '240px');
-      navbarRef.current.style.padding = isMobile && isCollapsed ? '0' : '1rem 0.5rem';
+      navbarRef.current.style.padding = isMobile && isCollapsed ? '0' : '0.5rem';
       setTimeout(() => {
         setIsResetting(false);
       }, 300);
@@ -73,7 +76,7 @@ export function useNavigation(): INavigationReturn {
       sidebarRef.current.style.width = '0px';
       navbarRef.current.style.width = '100%';
       navbarRef.current.style.left = '0';
-      navbarRef.current.style.padding = '1rem 0.5rem';
+      navbarRef.current.style.padding = '0.5rem';
       setTimeout(() => {
         setIsResetting(false);
       }, 300);
@@ -100,9 +103,10 @@ export function useNavigation(): INavigationReturn {
     isResizingRef,
     sidebarRef,
     navbarRef,
+    pathname,
+    params,
     // States
     isMobile,
-    pathname,
     isResetting,
     isCollapsed,
     // Actions
