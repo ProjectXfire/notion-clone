@@ -1,3 +1,4 @@
+export { default as IconPicker } from './IconPicker/IconPicker';
 export { default as Logo } from './Logo/Logo';
 export { default as ModeToggle } from './ModeToggle/ModeToggle';
 export { default as Providers } from './Providers/Providers';
@@ -5,10 +6,10 @@ export { default as Spinner } from './Spinner/Spinner';
 export * from './ui/AlertDialog';
 export * from './ui/Avatar';
 export * from './ui/Button';
+export * from './ui/Command';
+export * from './ui/Dialog';
 export * from './ui/DropdownMenu';
 export * from './ui/Input';
+export * from './ui/Label';
 export * from './ui/Popover';
 export * from './ui/Skeleton';
-export * from './ui/Dialog';
-export * from './ui/Command';
-export * from './ui/Label';

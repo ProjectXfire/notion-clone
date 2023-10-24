@@ -6,6 +6,7 @@ import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Button } from '@/shared/components';
 import { ConfirmModal } from '..';
+import { Trash, Undo } from 'lucide-react';
 
 interface Props {
   documentId: Id<'documents'>;
@@ -34,26 +35,26 @@ function Banner({ documentId }: Props): JSX.Element {
   };
 
   return (
-    <div className='w-full bg-rose-500 text-center text-sm p-2 text-white flex items-center gap-x-2 justify-center rounded-xl'>
+    <div className='w-full bg-rose-500 text-center text-[13px] p-2 text-white flex items-center gap-x-2 justify-center rounded-xl'>
       <p>This page is in the trash</p>
       <Button
-        className='border-white bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal'
+        className='border-white text-[13px] bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal'
         variant='outline'
         size='sm'
         type='button'
         onClick={onRestore}
       >
-        Restore page
+        <Undo className='w-5 h-5' />
       </Button>
 
       <ConfirmModal onConfirm={onRemove}>
         <Button
-          className='border-white bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal'
+          className='border-white text-[13px] bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal'
           variant='outline'
           size='sm'
           type='button'
         >
-          Delete forever
+          <Trash className='w-5 h-5' />
         </Button>
       </ConfirmModal>
     </div>
