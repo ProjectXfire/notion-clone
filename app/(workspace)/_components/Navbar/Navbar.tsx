@@ -1,7 +1,6 @@
 'use client';
 
 import { redirect, useParams } from 'next/navigation';
-import { useUser } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
 import { type Id } from '@/convex/_generated/dataModel';
 import { api } from '@/convex/_generated/api';
@@ -12,10 +11,8 @@ interface Props {
 }
 
 function Navbar({ menuButton }: Props): JSX.Element {
-  const { user } = useUser();
   const params = useParams();
   const res = useQuery(api.documents.getById, {
-    userId: user?.id ?? '',
     documentId: params.id as Id<'documents'>
   });
 

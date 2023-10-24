@@ -33,9 +33,9 @@ export const getTrash = query({
 });
 
 export const getById = query({
-  args: { userId: v.string(), documentId: v.id('documents') },
+  args: { documentId: v.id('documents') },
   handler: async (ctx, args) => {
-    const { userId, documentId } = args;
+    const { documentId } = args;
     const document = await ctx.db.get(documentId);
     if (document === null) return { data: null, error: 'No found' };
     if (document.isPublished && !document.isArchive) {
@@ -44,6 +44,9 @@ export const getById = query({
         error: null
       };
     }
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) return { data: null, error: 'Not authenticated' };
+    const userId = identity.subject;
     if (userId === undefined || userId === null) return { data: null, error: 'Unathorized' };
     if (document.userId !== userId)
       return {
@@ -182,5 +185,19 @@ export const remove = mutation({
     if (existingDocument.userId !== userId) throw new Error('Unauthorized');
     await ctx.db.delete(args.id);
     return existingDocument;
+  }
+});
+
+export const removeIcon = mutation({
+  args: { id: v.id('documents') },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) return { data: null, error: 'Not authenticated' };
+    const existingDocument = await ctx.db.get(args.id);
+    if (existingDocument === null) return { data: null, error: 'Not found' };
+    const userId = identity.subject;
+    if (existingDocument.userId !== userId) return { data: null, error: 'Unauthorized' };
+    await ctx.db.patch(args.id, { icon: undefined });
+    return { data: null, error: null };
   }
 });
