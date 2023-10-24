@@ -93,8 +93,6 @@ function Navigation(): JSX.Element {
       >
         {params.id !== undefined ? (
           <Navbar
-            isCollapsed={isCollapsed}
-            onResetWidth={resetWidth}
             menuButton={
               isCollapsed && (
                 <MenuIcon className={`${styles['navbar__content-open']}`} onClick={resetWidth} />
