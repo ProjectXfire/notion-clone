@@ -21,7 +21,7 @@ function DocumentsList({ data, level = 0, parentDocumentId }: Props): JSX.Elemen
   const router = useRouter();
   const { user } = useUser();
 
-  const documents = useQuery(api.documents.getSidebar, {
+  const res = useQuery(api.documents.getSidebar, {
     userId: user?.id ?? '',
     parentDocument: parentDocumentId
   });
@@ -36,7 +36,7 @@ function DocumentsList({ data, level = 0, parentDocumentId }: Props): JSX.Elemen
     router.push(`/documents/${documentId}`);
   };
 
-  if (documents === undefined) {
+  if (res === undefined) {
     return (
       <>
         <Item.Skeleton level={level} />
@@ -62,7 +62,7 @@ function DocumentsList({ data, level = 0, parentDocumentId }: Props): JSX.Elemen
       >
         No pages inside
       </p>
-      {documents.map((doc) => (
+      {res.data.map((doc) => (
         <div key={doc._id}>
           <Item
             id={doc._id}
