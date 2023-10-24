@@ -37,7 +37,7 @@ export const getById = query({
   handler: async (ctx, args) => {
     const { userId, documentId } = args;
     const document = await ctx.db.get(documentId);
-    if (document === null) throw new Error('Not found');
+    if (document === null) return { data: null, error: 'No found' };
     if (document.isPublished && !document.isArchive) {
       return {
         data: document,

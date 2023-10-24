@@ -1,7 +1,9 @@
+export { default as Banner } from './Banner/Banner';
 export { default as ConfirmModal } from './ConfirmModal/ConfirmModal';
 export { default as CreateButton } from './CreateNote/CreateButton';
 export { default as DocumentsList } from './DocumentsList/DocumentsList';
 export { default as Item } from './Item/Item';
+export { default as Menu } from './Menu/Menu';
 export { default as ModalProviders } from './ModalProviders/ModalProviders';
 export { default as Navbar } from './Navbar/Navbar';
 export { default as Navigation } from './Navigation/Navigation';
