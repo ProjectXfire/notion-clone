@@ -6,8 +6,10 @@ import { toast } from 'sonner';
 import { api } from '@/convex/_generated/api';
 import { type Doc } from '@/convex/_generated/dataModel';
 import TextAreaAutosize from 'react-textarea-autosize';
+import { useDialog } from '@/shared/states';
 import { ImageIcon, Smile, X } from 'lucide-react';
 import { Button, IconPicker } from '@/shared/components';
+import { CoverImageDialog } from '..';
 
 interface Props {
   document: Doc<'documents'>;
@@ -18,6 +20,8 @@ function Toolbar({ document, preview = false }: Props): JSX.Element {
   const inputRef = useRef<ElementRef<'textarea'>>(null);
   const update = useMutation(api.documents.update);
   const removeIcon = useMutation(api.documents.removeIcon);
+  const openCoverModal = useDialog((s) => s.onOpen);
+  const setComponent = useDialog((s) => s.setComponent);
 
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(document.title);
@@ -62,6 +66,10 @@ function Toolbar({ document, preview = false }: Props): JSX.Element {
       disableInput();
     }
   };
+  const onOpenCoverModal = (): void => {
+    setComponent(<CoverImageDialog />);
+    openCoverModal();
+  };
 
   return (
     <div className='pl-[54px] group relative cursor-default'>
@@ -96,7 +104,7 @@ function Toolbar({ document, preview = false }: Props): JSX.Element {
             variant='outline'
             size='sm'
             type='button'
-            onClick={() => {}}
+            onClick={onOpenCoverModal}
           >
             <ImageIcon className='w-4 h-4 mr-2' /> Add cover
           </Button>

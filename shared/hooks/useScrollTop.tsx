@@ -4,7 +4,6 @@ export function useScrollTop(threshold = 40): boolean {
   const [scrolled, setScrolled] = useState(false);
 
   const handleScroll = useCallback((): void => {
-    // console.log(Math.abs(document.body.getBoundingClientRect().top));
     if (window.scrollY > threshold) {
       setScrolled(true);
     } else {

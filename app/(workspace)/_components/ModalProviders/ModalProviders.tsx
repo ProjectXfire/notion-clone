@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { SettingsModal } from '..';
+import { CustomDialog } from '@/shared/components';
 
 function ModalProviders(): JSX.Element {
   const [isMounted, setIsMounted] = useState(false);
@@ -12,10 +12,6 @@ function ModalProviders(): JSX.Element {
 
   if (!isMounted) return <></>;
 
-  return (
-    <>
-      <SettingsModal />
-    </>
-  );
+  return <CustomDialog />;
 }
 export default ModalProviders;
