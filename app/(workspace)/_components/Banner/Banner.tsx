@@ -4,8 +4,7 @@ import { toast } from 'sonner';
 import { type Id } from '@/convex/_generated/dataModel';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import { Button } from '@/shared/components';
-import { ConfirmModal } from '..';
+import { Button, ConfirmModal } from '@/shared/components';
 import { Trash, Undo } from 'lucide-react';
 
 interface Props {

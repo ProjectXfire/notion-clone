@@ -5,16 +5,18 @@ import { useMutation } from 'convex/react';
 import { toast } from 'sonner';
 import { api } from '@/convex/_generated/api';
 import { useNavigation } from './useNavigation';
-import { useSearch, useSettings } from '../../states';
+import { useSearch } from '../../states';
 import styles from './Navigation.module.css';
 import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings, Trash } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/shared/components';
-import { DocumentsList, Item, Navbar, TrashBox, UserItem } from '..';
+import { DocumentsList, Item, Navbar, SettingsModal, TrashBox, UserItem } from '..';
+import { useDialog } from '@/shared/states';
 
 function Navigation(): JSX.Element {
   const create = useMutation(api.documents.create);
   const onOpen = useSearch((s) => s.onOpen);
-  const onOpenSettings = useSettings((s) => s.onOpen);
+  const openSetting = useDialog((s) => s.onOpen);
+  const setComponent = useDialog((s) => s.setComponent);
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -37,6 +39,11 @@ function Navigation(): JSX.Element {
       success: 'New note created!',
       error: 'Failed to create a new note'
     });
+  };
+
+  const onOpenSettings = (): void => {
+    setComponent(<SettingsModal />);
+    openSetting();
   };
 
   useEffect(() => {

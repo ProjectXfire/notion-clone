@@ -1,3 +1,5 @@
+export { default as ConfirmModal } from './ConfirmModal/ConfirmModal';
+export { default as CustomDialog } from './CustomDialog/CustomDialog';
 export { default as IconPicker } from './IconPicker/IconPicker';
 export { default as Logo } from './Logo/Logo';
 export { default as ModeToggle } from './ModeToggle/ModeToggle';
@@ -9,6 +11,7 @@ export * from './ui/Button';
 export * from './ui/Command';
 export * from './ui/Dialog';
 export * from './ui/DropdownMenu';
+export * from './ui/DropzoneImage';
 export * from './ui/Input';
 export * from './ui/Label';
 export * from './ui/Popover';

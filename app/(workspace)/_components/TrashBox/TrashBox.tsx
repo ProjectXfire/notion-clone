@@ -8,8 +8,7 @@ import { type Id } from '@/convex/_generated/dataModel';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Search, Trash, Undo } from 'lucide-react';
-import { Input, Spinner } from '@/shared/components';
-import { ConfirmModal } from '..';
+import { Input, Spinner, ConfirmModal } from '@/shared/components';
 
 function TrashBox(): JSX.Element {
   const router = useRouter();

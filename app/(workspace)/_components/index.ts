@@ -1,5 +1,6 @@
 export { default as Banner } from './Banner/Banner';
-export { default as ConfirmModal } from './ConfirmModal/ConfirmModal';
+export { default as Cover } from './Cover/Cover';
+export { default as CoverImageDialog } from './CoverImageDialog/CoverImageDialog';
 export { default as CreateButton } from './CreateNote/CreateButton';
 export { default as DocumentsList } from './DocumentsList/DocumentsList';
 export { default as Item } from './Item/Item';
