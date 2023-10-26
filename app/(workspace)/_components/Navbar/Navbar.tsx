@@ -4,7 +4,7 @@ import { redirect, useParams } from 'next/navigation';
 import { useQuery } from 'convex/react';
 import { type Id } from '@/convex/_generated/dataModel';
 import { api } from '@/convex/_generated/api';
-import { Banner, Menu, Title } from '..';
+import { Banner, Menu, Publish, Title } from '..';
 
 interface Props {
   menuButton?: React.ReactNode;
@@ -32,6 +32,7 @@ function Navbar({ menuButton }: Props): JSX.Element {
         <div className='flex items-center justify-between w-full'>
           <Title initialData={res.data} />
           <div className='flex items-center gap-x-2'>
+            <Publish data={res.data} />
             <Menu documentId={res.data._id} />
           </div>
         </div>

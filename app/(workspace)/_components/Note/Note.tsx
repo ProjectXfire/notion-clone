@@ -11,9 +11,11 @@ import { Skeleton } from '@/shared/components';
 
 interface Props {
   documentId: Id<'documents'>;
+  editable?: boolean;
+  preview?: boolean;
 }
 
-function Note({ documentId }: Props): JSX.Element {
+function Note({ documentId, editable, preview }: Props): JSX.Element {
   const Editor = useMemo(
     () =>
       dynamic(
@@ -48,15 +50,25 @@ function Note({ documentId }: Props): JSX.Element {
       </div>
     );
 
-  if (res.data === null) return <div>Not found</div>;
+  if (res.data === null) return <></>;
+
+  if (preview === true && !res.data.isPublished)
+    return (
+      <div className='w-full flex justify-center'>
+        <p className='bg-red-500 rounded-lg text-white p-4 text-sm'>
+          Note has been unplublished or removed
+        </p>
+      </div>
+    );
 
   return (
     <>
-      <Cover coverImageUrl={res.data.coverImage} />
+      <Cover preview={preview} coverImageUrl={res.data.coverImage} />
       <article className='md:max-w-3xl lg:max-w-4xl mx-auto'>
-        <Toolbar document={res.data} />
+        <Toolbar preview={preview} document={res.data} />
         <Editor
           text={res.data.content}
+          editable={editable}
           onChange={(value) => {
             void updateContent(value);
           }}
