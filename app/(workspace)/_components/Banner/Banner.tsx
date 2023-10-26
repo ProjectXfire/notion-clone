@@ -45,7 +45,6 @@ function Banner({ documentId }: Props): JSX.Element {
       >
         <Undo className='w-5 h-5' />
       </Button>
-
       <ConfirmModal onConfirm={onRemove}>
         <Button
           className='border-white text-[13px] bg-transparent hover:bg-primary/5 text-white hover:text-white p-1 px-2 h-auto font-normal'

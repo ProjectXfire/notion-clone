@@ -82,7 +82,7 @@ export const create = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (identity === null) throw new Error('Not autneticated');
+    if (identity === null) return { data: null, error: 'Not autneticated' };
     const userId = identity.subject;
     const document = await ctx.db.insert('documents', {
       title: args.title,
@@ -91,7 +91,7 @@ export const create = mutation({
       isArchive: false,
       isPublished: false
     });
-    return document;
+    return { data: document, error: null };
   }
 });
 
