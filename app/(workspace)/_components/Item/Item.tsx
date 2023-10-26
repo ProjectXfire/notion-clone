@@ -66,12 +66,12 @@ function Item({
     e.stopPropagation();
     if (id === undefined) return;
     try {
-      const documentId = await create({ title: 'Untitled', parentDocument: id });
+      const res = await create({ title: 'Untitled', parentDocument: id });
       if (expanded !== undefined && expanded) {
         onExpand?.();
       }
       toast.success('New note created!');
-      router.push(`/documents/${documentId}`);
+      router.push(`/documents/${res.data}`);
     } catch (error) {
       toast.error('Failed to create a new note.');
     }
@@ -82,9 +82,9 @@ function Item({
     if (id === undefined) return;
     const promise = archive({ id });
     toast.promise(promise, {
-      loading: 'Deleting note...',
-      error: 'Failed to delete note',
-      success: 'Note deleted'
+      loading: 'Sending to trash...',
+      error: 'Failed to send to trash',
+      success: 'Note in trash'
     });
   };
 

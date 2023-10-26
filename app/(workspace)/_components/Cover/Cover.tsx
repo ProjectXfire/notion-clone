@@ -9,7 +9,7 @@ import { useMutation } from 'convex/react';
 import { type Id } from '@/convex/_generated/dataModel';
 import { useEdgeStore } from '@/shared/lib/edgeStore';
 import { useDialog } from '@/shared/states';
-import { Button } from '@/shared/components';
+import { Button, Skeleton } from '@/shared/components';
 import { CoverImageDialog } from '..';
 import { toast } from 'sonner';
 
@@ -53,7 +53,7 @@ function Cover({ coverImageUrl, preview = false }: Props): JSX.Element {
       )}
     >
       {coverImageUrl !== undefined && (
-        <NextImage className='object-contain' src={coverImageUrl} fill alt='cover' />
+        <NextImage className='object-cover' src={coverImageUrl} fill alt='cover' />
       )}
       {coverImageUrl !== undefined && !preview && (
         <div className='opacity-0 group-hover:opacity-100 absolute bottom-5 right-5 flex items-center gap-x-2'>
@@ -82,4 +82,9 @@ function Cover({ coverImageUrl, preview = false }: Props): JSX.Element {
     </div>
   );
 }
+
+Cover.Skeleton = function CoverSkeleton() {
+  return <Skeleton className='w-full h-[24vh]' />;
+};
+
 export default Cover;

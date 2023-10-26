@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useMutation } from 'convex/react';
 import { toast } from 'sonner';
 import { api } from '@/convex/_generated/api';
@@ -17,6 +18,7 @@ function Navigation(): JSX.Element {
   const onOpen = useSearch((s) => s.onOpen);
   const openSetting = useDialog((s) => s.onOpen);
   const setComponent = useDialog((s) => s.setComponent);
+  const router = useRouter();
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -33,7 +35,9 @@ function Navigation(): JSX.Element {
   } = useNavigation();
 
   const onCreate = (): void => {
-    const promise = create({ title: 'Untitled' });
+    const promise = create({ title: 'Untitled' }).then((res) => {
+      router.push(`/documents/${res.data}`);
+    });
     toast.promise(promise, {
       loading: 'Creatin new note',
       success: 'New note created!',
