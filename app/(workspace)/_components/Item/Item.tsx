@@ -107,7 +107,7 @@ function Item({
       {documentIcon !== undefined ? (
         <div className='shrink-0 mr-2 text-[18px]'>{documentIcon}</div>
       ) : (
-        <Icon className='h-[18px] mr-2 text-muted-foreground shrink-0' />
+        <Icon className='h-[18px] w-[18px] mr-2 text-muted-foreground shrink-0' />
       )}
       <span className='truncate'>{label}</span>
       {isSearch !== undefined && isSearch && (

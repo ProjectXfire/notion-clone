@@ -10,6 +10,7 @@ export { default as ModalProviders } from './ModalProviders/ModalProviders';
 export { default as Navbar } from './Navbar/Navbar';
 export { default as Navigation } from './Navigation/Navigation';
 export { default as Note } from './Note/Note';
+export { default as Publish } from './Publish/Publish';
 export { default as SearchCommand } from './SearchCommand/SearchCommand';
 export { default as SettingsModal } from './SettingsModal/SettingsModal';
 export { default as Title } from './Title/Title';
