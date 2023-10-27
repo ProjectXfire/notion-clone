@@ -1,7 +1,7 @@
 'use client';
 
-import { useDialog } from '../../states';
-import { Dialog, DialogContent } from '..';
+import { useDialog } from '../states';
+import { Dialog, DialogContent } from '.';
 
 function CustomDialog(): JSX.Element {
   const isOpen = useDialog((s) => s.isOpen);

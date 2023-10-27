@@ -1,10 +1,10 @@
-export { default as ConfirmModal } from './ConfirmModal/ConfirmModal';
-export { default as CustomDialog } from './CustomDialog/CustomDialog';
-export { default as IconPicker } from './IconPicker/IconPicker';
-export { default as Logo } from './Logo/Logo';
-export { default as ModeToggle } from './ModeToggle/ModeToggle';
-export { default as Providers } from './Providers/Providers';
-export { default as Spinner } from './Spinner/Spinner';
+export { default as ConfirmModal } from './ConfirmModal';
+export { default as CustomDialog } from './CustomDialog';
+export { default as IconPicker } from './IconPicker';
+export { default as Logo } from './Logo';
+export { default as ModeToggle } from './ModeToggle';
+export { default as Providers } from './Providers';
+export { default as Spinner } from './Spinner';
 export * from './ui/AlertDialog';
 export * from './ui/Avatar';
 export * from './ui/Button';
